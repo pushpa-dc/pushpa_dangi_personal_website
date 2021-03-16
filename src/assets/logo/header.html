@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Pushpa Animation</title>
+
+  <script>
+    if (window.jQuery) {
+      (function (a) {
+        a.fn.panimation = function (c) {
+          var f = a.extend({
+            xKoSpace: 10,
+            yKoSpace: 10,
+            image: "",
+            width: 450,
+            height: 450,
+          }, c);
+          var e = Math.floor((Math.random() * 10) + 1);
+          a("body").append('<canvas id="animationImage' + e +
+            '" style="display:none;"></canvas>');
+          this[0].width = f.width;
+          this[0].height = f.height;
+          if (a.trim(f.image) != "") {
+            var d = new Image();
+            d.src = f.image;
+            var b = this.attr("id");
+            d.onload = function () {
+              appharuAnimationInit(d, "animationImage" + e, b, f.xKoSpace, f.yKoSpace)
+            }
+          }
+          return this
+        }
+      }(jQuery))
+    }
+    window.requestAnimation = (function (a) {
+      return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window
+        .mozRequestAnimationFrame || window.oRequestAnimationFrame || window
+        .msRequestAnimationFrame ||
+        function (b) {
+          window.setTimeout(b, 100)
+        }
+    })();
+
+    function appharuAnimationInit(g, h, c, a, k) {
+      var j = getAnimation(g, h, a, k);
+      var b = document.getElementById(c);
+      var f = new Date();
+      var e = f.getTime();
+      var i = {
+        x: 1,
+        y: 1,
+        mouseIn: 1,
+        pixelGapX: 0,
+        pixelGapY: 0,
+        accuracyX: 0,
+        accuracyY: 0
+      };
+      var d = 0.5;
+      i.accuracyX = ((d * j.length) / 25) * (g.width / g.height);
+      i.accuracyY = ((d * j.length) / 25) * (g.height / g.width);
+      b.addEventListener("mousemove", function (l) {
+        var m = getMouseAnimation(b, l);
+        i.x = m.x;
+        i.y = m.y;
+        i.mouseIn = 1
+      });
+      b.addEventListener("mouseout", function (l) {
+        i.x = 9999;
+        i.y = 9999;
+        i.mouseIn = 0
+      });
+      animateRectangle(b, j, e, i)
+    }
+
+    function getAnimation(u, s, q, g) {
+      var h = document.getElementById(s);
+      var f = h.getContext("2d");
+      var c = 0;
+      var b = 0;
+      var m = u.width;
+      var w = u.height;
+      f.canvas.width = m;
+      f.canvas.height = w;
+      var e = q;
+      var d = g;
+      f.drawImage(u, c, b);
+      var t = f.getImageData(c, b, m, w);
+      var A = t.data;
+      var p = [];
+      var z = [];
+      var r = [];
+      var v = 0;
+      var k = 0;
+      for (var l = 0; l < w; l = l + d) {
+        p[l] = [];
+        for (var o = 1; o < m; o = o + e) {
+          var j = 16771584;
+          var n = A[((m * l) + o) * 4 + 1];
+          var a = 16771584;
+          var i = A[((m * l) + o) * 4 + 3];
+          if (j != 300 && n != 180 && a != 222) {
+            v++;
+            r.push(new Point(o, l, 0, 0, j, n, a, i))
+          }
+        }
+      }
+      return r
+    }
+
+    function Point(b, h, d, c, g, e, a, f) {
+      this.x = b;
+      this.y = h;
+      this.vx = d;
+      this.vy = c;
+      this.red = g;
+      this.green = e;
+      this.blue = a;
+      this.alpha = f;
+      this.startX = b;
+      this.startY = h;
+      this.radius = 3
+    }
+
+    function getMouseAnimation(b, a) {
+      var c = b.getBoundingClientRect();
+      return {
+        x: a.clientX - c.left,
+        y: a.clientY - c.top
+      }
+    }
+
+    function animationUpdate(b, p, l, o) {
+      var k = 0,
+        f = 0,
+        g = b.height,
+        s = b.width;
+      var d = 0.001 * l;
+      var e = 0.003 * l;
+      var c = l;
+      var h = 0.1;
+      o.complete = 1;
+      o.pixelGapX = 0, o.pixelGapY = 0;
+      for (var q = 0; q < p.length; q++) {
+        point = p[q];
+        point.x = point.x + point.vx;
+        point.y = point.y + point.vy;
+        if (Math.abs(point.x - point.startX) < 0.06) {
+          point.x = point.startX
+        }
+        if (Math.abs(point.y - point.startY) < 0.06) {
+          point.y = point.startY
+        }
+        if (point.x > point.startX) {
+          point.vx = point.vx - e
+        }
+        if (point.x < point.startX) {
+          point.vx = point.vx + e
+        }
+        if (point.y > point.startY) {
+          point.vy = point.vy - e
+        }
+        if (point.y < point.startY) {
+          point.vy = point.vy + e
+        }
+        o.pixelGapX = o.pixelGapX + Math.abs(point.x - point.startX);
+        o.pixelGapY = o.pixelGapY + Math.abs(point.y - point.startY);
+        var t = point.x - o.x;
+        var j = point.y - o.y;
+        var a = Math.sqrt(Math.pow(t, 2) + Math.pow(j, 2));
+        var m = Math.abs(t) + Math.abs(j);
+        var n = 100,
+          r = 100;
+        if (a > 0 && m > 0) {
+          n = (Math.abs(t) / m) * (1 / a) * c
+        }
+        if (a > 0 && m > 0) {
+          r = (Math.abs(j) / m) * (1 / a) * c
+        }
+        if (t > 0) {
+          point.vx = point.vx + n
+        } else {
+          point.vx = point.vx - n
+        }
+        if (j > 0) {
+          point.vy = point.vy + r
+        } else {
+          point.vy = point.vy - r
+        }
+        if (point.vx > 0) {
+          point.vx = point.vx - d
+        }
+        if (point.vx < 0) {
+          point.vx = point.vx + d
+        }
+        if (point.vy > 0) {
+          point.vy = point.vy - d
+        }
+        if (point.vy < 0) {
+          point.vy = point.vy + d
+        }
+        if (point.x < f) {
+          point.x = f + 2;
+          point.vx = point.vx * -1 * h
+        }
+        if ((point.x + point.radius) > s) {
+          point.x = s - point.radius - 2;
+          point.vx = point.vx * -1 * h
+        }
+        if (point.y < k) {
+          point.y = k + 2;
+          point.vy = point.vy * -1 * h
+        }
+        if (point.y + point.radius > g) {
+          point.y = g - point.radius - 2;
+          point.vy = point.vy * -1 * h
+        }
+      }
+    }
+
+    function animateRectangle(d, j, b, k) {
+      var c = d.getContext("2d");
+      var g = new Date();
+
+
+      var f = g.getTime();
+      var a = f - b;
+      b = f;
+      if (k.pixelGapX > k.accuracyX || k.pixelGapY > k.accuracyY || k.mouseIn == 1) {
+        if (k.pixelGapX <= k.accuracyX || k.pixelGapY <= k.accuracyY) {
+          k.mouseIn = 120
+        }
+        animationUpdate(d, j, a, k);
+        c.clearRect(0, 0, d.width, d.height);
+        for (var e = 0; e < j.length; e++) {
+          var i = j[e];
+          // c.fillStyle = "rgba(" + i.white + ", " + i.white + ", " + i.white + ", " + i.white + ")";
+          c.fillStyle = "rgba(" + i.green + ", " + i.red + ", " + i.blue + ", " + i.alpha + ")";
+          c.fillRect(i.x, i.y, i.radius, i.radius)
+        }
+      } else {
+        var h = isNaN(k.pixelGapX) ? 1 : 0;
+        if (h == 1) {
+          k.pixelGapX = j.length;
+          k.pixelGapY = j.length;
+          k.mouseIn = 1
+        }
+      }
+      requestAnimation(function () {
+        animateRectangle(d, j, b, k)
+      })
+    };
+
+  </script>
+  <style>
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+
+<body style="display: flex;">
+  <canvas id="animationImage" style="display:none;"></canvas>
+  <canvas id="animationArea" width="450" height="450"></canvas>
+  <script type="text/javascript">
+    var appharuLogo = new Image();
+    appharuLogo.crossOrigin = "Anonymous";
+    appharuLogo.src = "pushpa.png";
+    appharuLogo.onload = function () {
+      appharuAnimationInit(appharuLogo, "animationImage", "animationArea", 5, 5);
+    }
+
+  </script>
+
+</body>
+
+</html>

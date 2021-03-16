@@ -1,0 +1,56 @@
+<!-- <mat-card class="form-wrap" [style.backgroundColor]="'#132b58'">
+  <h5 class="text-center text-light">Contact Form</h5>
+</mat-card>
+<mat-card class="form-wrap">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your name" pattern="[a-zA-Z ]*" value="" required>
+
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <span matPrefix>+977 &nbsp;</span>
+        <input type="tel" matInput placeholder="Telephone">
+      </mat-form-field>
+    </form>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Send</button>
+  </form>
+</mat-card> -->
+<div class="flyInOut" @flyInOut>
+  <mat-card class="form-wrap" [style.backgroundColor]="'rgb(250, 60, 76)'">
+    <h3 class="text-center text-light">Contact me</h3>
+  </mat-card>
+  <mat-card>
+    <button mat-button>
+      <a href="tel:9868606268">
+        <mat-icon>call</mat-icon>
+        <span class="text-h">
+          9868606268
+        </span>
+      </a>
+    </button>
+  </mat-card>
+  <mat-card>
+    <button mat-button>
+      <a href="mailto:dcpushparaj@gmail.com">
+        <mat-icon>email</mat-icon>
+        <span class="text-h">
+          dcpushparaj@gmail.com
+        </span>
+      </a>
+    </button>
+  </mat-card>
+</div>

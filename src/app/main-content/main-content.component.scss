@@ -1,0 +1,89 @@
+.main-cover {
+  background-image: url(/assets/img/pushpa.jpg);
+  background-size: cover;
+}
+
+.main-cover:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-image: linear-gradient(to bottom right, #35477d 15%, #07848e 75%);
+  background: #000;
+  opacity: .6;
+  z-index: 0;
+}
+
+.main-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.pushpa-title {
+  z-index: 1;
+  position: absolute;
+  color: #e9ff43;
+  right: 5%;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  top: 50%;
+  bottom: 0;
+}
+
+.head-title {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  font-size: 55px;
+  text-shadow: 2px 1px 3px rgb(0, 0, 0);
+  color: #fff;
+  right: 1%;
+}
+
+iframe {
+  z-index: 1;
+  position: absolute;
+  color: #fff;
+  left: 0%;
+  right: 0;
+  bottom: 0;
+}
+
+.more {
+  position: absolute;
+  z-index: 1;
+  right: 15%;
+  bottom: 30%;
+}
+
+.spin {
+  position: absolute;
+  z-index: 1;
+}
+
+@media (max-width:575px) {
+  .pushpa-title {
+    left: 0;
+    top: 70%;
+  }
+
+  .head-title {
+    font-size: 35px !important;
+    top: 60% !important;
+    left: 10%;
+  }
+
+  .more {
+    position: absolute;
+    z-index: 1;
+    right: 35%;
+    bottom: 15%;
+  }
+}

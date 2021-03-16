@@ -1,0 +1,105 @@
+<mat-sidenav-container class="app-container">
+  <mat-sidenav #sidenav class="app-sidenav" [opened]="!isMobile" [mode]="isMobile ? 'over' : 'side' ">
+    <a href="/">
+      <div class="logo">
+        <img src="assets/img/pushpa.jpeg" alt="Pushpa Raj Dangi">
+      </div>
+      <div class="custom-chip">
+        <a href="https://www.facebook.com/dcpushpa" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697057-facebook-128.png" alt="">
+        </a>
+        <a href="https://twitter.com/pushparajdc" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697029-twitter-512.png" alt="">
+        </a>
+        <a href="https://www.instagram.com/dc_pushpa/" target="_blank">
+          <img class="social-img"
+            src="https://cdn2.iconfinder.com/data/icons/popular-social-media-flat/48/Popular_Social_Media-08-128.png"
+            alt="">
+        </a>
+        <a href="https://www.youtube.com/channel/UCHgei4HKgx96VnT_e89UMeQ?sub_confirmation=1" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697037-youtube-128.png" alt="">
+        </a>
+      </div>
+      <h6 class="name-title">
+        Pushpa Raj Dangi
+      </h6>
+      <h6 class="small">
+        Developer/Designer
+      </h6>
+    </a>
+    <mat-nav-list>
+      <a matLine routerLink='/'>
+        <mat-list-item>
+          <span class="nav-link">
+            Home
+          </span>
+        </mat-list-item>
+      </a>
+      <a matLine routerLink='/about'>
+        <mat-list-item>
+          <span class="nav-link">
+            About
+          </span>
+        </mat-list-item>
+      </a>
+      <a matLine routerLink='/skills'>
+        <mat-list-item>
+          <span class="nav-link">
+            Skills
+          </span>
+        </mat-list-item>
+      </a>
+      <a matLine routerLink='/works'>
+        <mat-list-item>
+          <span class="nav-link">
+            Works
+          </span>
+        </mat-list-item>
+      </a>
+      <a matLine routerLink='/contact'>
+        <mat-list-item>
+          <span class="nav-link">
+            Contact
+          </span>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+    <div class="copyright">
+      <h6>
+        © 2018 pushpadangi.com.np
+      </h6>
+    </div>
+  </mat-sidenav>
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle();  isCollapsed = !isCollapsed"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+      <div class="facebook-chat" (click)="isActive = !isActive">
+        <div class="online">
+          <img src="https://cdn.worldvectorlogo.com/logos/facebook-messenger.svg" alt=""
+            style="width: 20px;height: 20px;">
+          <div class="online-text">
+            Active Now
+            <span class="blink"></span>
+          </div>
+          <div class="cross" [class.d-none]="!isActive">
+            <img src="https://png.icons8.com/flat_round/1600/delete-sign.png" alt="Close" title="ESC">
+          </div>
+          <div class="cross" [class.d-none]="isActive">
+            <mat-icon>
+              open_in_browser
+            </mat-icon>
+          </div>
+        </div>
+        <div [class.d-none]="!isActive" [class.d-block]="isActive">
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDcpushparaj&tabs=messages&width=268&height=400&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=420198461651749"
+            frameborder="0" height="400"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-sidenav-container>

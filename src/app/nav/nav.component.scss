@@ -1,0 +1,128 @@
+.app-container {
+  flex: 1;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+}
+
+.app-container:before {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  content: " ";
+  display: block;
+  width: 25%;
+  background-size: cover;
+}
+
+
+.app-sidenav-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.name-title {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: -10px;
+}
+
+.small {
+  color: #FFF9C4;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.app-sidenav {
+  width: 315px;
+  justify-content: center;
+  position: fixed; // background-image: url(/assets/img/pback.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  // background-image: linear-gradient(to bottom right, #9C27B0 ,#2e2e52);
+  background-image: linear-gradient(to bottom left, #35477d 15%, #07848e 75%);
+}
+
+.mat-drawer-side {
+  border-right: 0 !important;
+}
+
+.logo img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.custom-chip img {
+  width: 50px;
+  // box-shadow: 0 0 1rem #4e30a9;
+  margin: auto 5px;
+  border-radius: 50%;
+}
+
+.custom-chip {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.mat-nav-list {
+  text-align: center;
+}
+
+.nav-link {
+  font-family: "Poppins", sans-serif;
+  color: #fff2f2;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.icon-s {
+  font-size: 20px;
+  color: #655858;
+}
+
+.copyright {
+  margin-top: 25px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.copyright h6 {
+  color: #ddd;
+  font-weight: bolder;
+  border-top: 1px solid #43577f;
+  padding: 15px 0px;
+  margin: 0px 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="position-fixed">
+  <button mat-button class="sidenav-toggle">
+    <mat-icon (click)="toggleSidenav.emit()">
+      menu
+    </mat-icon>
+  </button>
+  <div class="social">
+    <button mat-icon-button [matMenuTriggerFor]="menu" style="background:#fa3c4c;text-align: center;">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="bg-purple">
+      <button mat-menu-item>
+        <a href="https://www.facebook.com/dcpushpa" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697057-facebook-128.png" alt="">
+        </a>
+      </button>
+      <button mat-menu-item>
+        <a href="https://twitter.com/pushparajdc" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697029-twitter-512.png" alt="">
+        </a>
+      </button>
+      <button mat-menu-item>
+        <a href="https://www.instagram.com/dc_pushpa/" target="_blank">
+          <img class="social-img"
+            src="https://cdn2.iconfinder.com/data/icons/popular-social-media-flat/48/Popular_Social_Media-08-128.png"
+            alt="">
+        </a>
+      </button>
+      <button mat-menu-item>
+        <a href="https://goo.gl/M7rBpo" target="_blank">
+          <img class="social-img"
+            src="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697037-youtube-128.png" alt="">
+        </a>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
